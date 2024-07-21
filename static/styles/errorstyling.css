@@ -1,0 +1,61 @@
+#main {
+  margin: 4rem 5rem 2rem 5rem;
+}
+
+#subtitle {
+  font-size: 3em;
+  margin: 2rem 0;
+}
+
+#subtitle + h2 {
+  font-size: 4em;
+}
+
+#detailsContainer {
+  margin: 3rem 1rem;
+}
+
+#code {
+  font-size: 2em;
+  margin: 2rem 0;
+}
+
+#desc {
+  font-size: 1.25em;
+  line-height: 1.25;
+}
+
+#detailsContainer + p {
+  font-style: oblique;
+}
+
+.goofy {
+  max-height: 70vh;
+  width: auto;
+}
+
+#returnbutton {
+  padding: 1rem;
+  width: fit-content;
+  margin: 2rem auto;
+  cursor: pointer;
+  background-color: rgba(44, 83, 50, 0.5);
+  border-radius: 6px;
+  
+  transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+#returnbutton:hover {
+  background-color: rgba(31, 68, 37, 0.75);
+}
+
+#returnbutton:active {
+  background-color: rgba(25, 60, 30, 0.75);
+}
+
+#detailsContainer > i {
+  display: block;
+  text-align: center;
+  margin: 1rem;
+  font-size: 85%;
+}

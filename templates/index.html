@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="us-EN">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <link
+      href="{{ url_for('static', filename='styles/styling.css') }}"
+      rel="stylesheet"
+    /> -->
+
+    <script src="/static/main.js"></script>
+    <link href="/static/styles/styling.css" rel="stylesheet" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+
+    <title>My Crappy Blog</title>
+    <link
+      href="/static/images/favicon.png"
+      href="{{ url_for('static', filename='/images/favicon.png') }}"
+      rel="icon"
+    />
+  </head>
+
+  <body>
+    <noscript>
+      <div id="javascriptDisabled" class="center">
+        <h2>Javascript not Enabled!</h2>
+        <h2>&#x2639;</h2>
+      </div>
+    </noscript>
+
+    <header id="topbar">
+      <div id="topbarContents">
+        <div id="headerTitleContainer">
+          <h1>my crappy blog</h1>
+        </div>
+
+        <div id="topbarLinks">
+          <a href="/"
+            ><div class="topbarLinkContainer"></div>
+            Home</a
+          >
+
+          <a id="dashboardLink"
+            ><div class="topbarLinkContainer"></div>
+            Dashboard</a
+          >
+
+          <a id="accountButton">
+            <div class="topbarLinkContainer"></div>
+            Account
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div id="accountTabContainer" class="center">
+      <form method="post" onsubmit="return false;" id="accountCreationForm">
+        <table id="accountTab">
+          <img
+            src="/static/images/loading.png"
+            src="{{ url_for('static', filename='/images/loading.png') }}"
+            class="loadingImageGlobal center"
+            alt="loading..."
+          />
+          <thead>
+            <th><label for="user">Username:&nbsp;</label></th>
+            <td>
+              <input
+                id="user"
+                type="text"
+                name="username"
+                autocomplete="on"
+                maxlength="24"
+                minlength="3"
+                required
+              />
+            </td>
+          </thead>
+          <tbody>
+            <th><label for="pwd">Password:&nbsp;</label></th>
+            <td>
+              <!-- Make minlength bigger in other projects, 6 min -->
+              <input
+                id="pwd"
+                type="password"
+                name="password"
+                autocomplete="on"
+                minlength="4"
+                required
+              />
+            </td>
+          </tbody>
+          <tbody class="forEmail">
+            <th><label for="email">Email:&nbsp;</label></th>
+            <td>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                autocomplete="on"
+                minlength="7"
+                disabled
+              />
+            </td>
+          </tbody>
+          <tbody class="submitBody">
+            <th></th>
+            <td>
+              <input type="submit" value="Submit" />
+            </td>
+          </tbody>
+          <tbody>
+            <td><p>An error has occured!</p></td>
+          </tbody>
+          <tbody id="createAccount">
+            <td><a>Create an account instead.</a></td>
+          </tbody>
+        </table>
+      </form>
+    </div>
+
+    <div id="motdFinalContainer">
+      <div id="motdContainer">
+        <div id="motd">
+          <h1>Message of the day!</h1>
+          <p>
+            I fear no man, but that thing.. It scares me. Lorem ipsum dolor sit
+            amet consectetur adipisicing elit. Vel corporis mollitia velit
+            nostrum dicta ad eligendi, blanditiis ab voluptates. Eveniet aliquam
+            deserunt maxime illo veritatis.
+          </p>
+          <div class="bottomAlignedDiv center">
+            <a
+              class="closeButton"
+              onclick="unblurElement(document.getElementById('blogMain'))"
+              >Close</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="confirmationWindowFinalContainer">
+      <div id="confirmationWindowContainer">
+        <div id="confirmationWindow">
+          <h1>User Confirmation</h1>
+          <p>Are you sure you want to discard this post?</p>
+          <div class="bottomAlignedDiv center">
+            <a
+              class="closeButtonMultiple"
+              id="yesConfirmation"
+              onclick=""
+              onmouseenter="glowElement(this, true)"
+              onmouseleave="glowElement(this, false)"
+              >Yes</a
+            >
+            <a
+              class="closeButtonMultiple"
+              id="noConfirmation"
+              onclick=""
+              onmouseenter="glowElement(this, true)"
+              onmouseleave="glowElement(this, false)"
+              >No</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="abovePostsContainer" class="center">
+      <div id="sortingContainer">
+        <label for="sortingPostsInput">Sort by:&nbsp;</label>
+        <select
+          id="sortingPostsInput"
+          class="dropdownInput"
+          name="sortingPostsInput"
+        >
+          <option value="date">Date</option>
+          <option value="popularity">Popularity</option>
+          <option value="featured">Featured</option>
+          <option value="admin">Announcements</option>
+        </select>
+      </div>
+
+      <div id="createPostContainer">
+        <p id="createPostButton">
+          <a>Create Post</a>
+        </p>
+      </div>
+    </div>
+
+    <div id="blogCreationContainer" class="blogElementContainer">
+      <div class="blogElement center">
+        <form id="createblogElementForm" onsubmit="return false" method="POST">
+          <div class="blogElementHeading">
+            <input
+              type="text"
+              class="blogElementTitle"
+              name="postTitle"
+              id="postCreateTitle"
+              maxlength="100"
+              placeholder="Title here!"
+              required
+            />
+
+            <span class="blogElementSubtitle blogElementImportance"
+              >&nbsp;</span
+            >
+            <span class="blogElementSubtitle PostDATE"
+              >&emsp;&emsp;Today's Date!</span
+            >
+
+            <select
+              id="postFeaturedSelection"
+              class="sortingPostsInput"
+              name="importance"
+            >
+              <option value="None">None</option>
+              <option value="Featured">Featured</option>
+              <option value="Admin">Announcement</option>
+            </select>
+          </div>
+
+          <div class="blogElementHeadingSubtitle">
+            <span class="blogElementSubtitle PostUSER">DISPLAY NAME</span>
+            <span class="blogElementSubtitle">&nbsp; &#x2022; &nbsp;</span>
+            <span class="blogElementSubtitle PostVIEWS">
+              <img
+                src="/static/images/like.png"
+                src='{{ url_for("static", filename="/images/like.png") }}'
+                alt="Likes"
+              />&nbsp; 0</span
+            >
+          </div>
+
+          <div class="blogElementBody">
+            <textarea
+              cols="25"
+              rows="15"
+              name="postContent"
+              id="postCreateContent"
+              placeholder="Content here!"
+              maxlength="60000"
+              required
+            ></textarea>
+          </div>
+
+          <div id="blogpostSubmit">
+            <input type="button" value="Discard" />
+            <input type="submit" value="Create" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="postOptionsContainer">
+      <a class="postOptionLink" id="option_viewFullPost">View Post</a>
+      <a class="postOptionLink" id="option_blockUser">Block User</a>
+      <a class="postOptionLink" id="option_editPost">Edit Post</a>
+      <a class="postOptionLink" id="option_deletePost">Delete Post</a>
+    </div>
+
+    <div id="blogMain">
+      <!-- <div class="blogElementContainer">
+        <div class="blogElement center">
+          <div class="blogElementHeading">
+            <span class="blogElementTitle PostTITLE"
+              >My Life as lorem (ipsum)!</span
+            >
+            <span class="blogElementSubtitle blogElementImportance"
+              >&#x2606; &nbsp;</span
+            >
+            <span class="blogElementSubtitle PostDATE">2024-04-26</span>
+
+            <a class="postOptions">&#x22EE;</a>
+          </div>
+
+          <div class="blogElementHeadingSubtitle">
+            <span class="blogElementSubtitle PostUSER">Mr. Gandolfio</span>
+            <span class="blogElementSubtitle">&nbsp; &#x2022; &nbsp;</span>
+            <span class="blogElementSubtitle PostVIEWS">172 Views</span>
+          </div>
+
+          <div class="blogElementBody">
+            <p>POST_TEXT</p>
+          </div>
+
+          <div class="blogMainReactions">
+            <a class="blogReactionButton">Like</a>
+            <span class="blogReactionButton">&nbsp; &#x00B7; &nbsp;</span>
+            <a class="blogReactionButton">Dislike</a>
+            <span class="blogReactionButton">&nbsp; &#x00B7; &nbsp;</span>
+            <a class="blogReactionButton">Share</a>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="blogElementSeparator center"></div> -->
+    </div>
+
+    <div id="loadingImageContainer" class="center">
+      <img
+        src="/static/images/loading.png"
+        src="{{ url_for('static', filename='/images/loading.png') }}"
+        id="loadingImage"
+        class="center"
+        alt="loading more posts..."
+      />
+    </div>
+
+    <div id="scrollUpContainer">
+      <a
+        onmouseenter="switchDescendantLineHeight(this, 1)"
+        onmouseleave="switchDescendantLineHeight(this, getComputedStyle(document.documentElement).getPropertyValue('scrollUpLineHeight'))"
+      >
+        <span>&#x02C4;</span>
+        <span>&#x02C4;</span>
+        <span>&#x02C4;</span>
+      </a>
+    </div>
+
+    <div id="notificationsDiv">
+      <!-- <div class="notificationBottom center">
+        <h4>You cannot vote on a post without being logged in!</h4>
+      </div> -->
+    </div>
+
+    <div id="footer"></div>
+  </body>
+</html>

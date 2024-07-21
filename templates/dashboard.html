@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+        <link
+          href="{{ url_for('static', filename='styles/styling.css') }}"
+          rel="stylesheet"
+        /> -->
+
+    <script src="/static/dashboard.js"></script>
+    <link href="/static/styles/styling.css" rel="stylesheet" />
+    <link href="/static/styles/dashboardstyles.css" rel="stylesheet" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+
+    <title>My Crappy Blog</title>
+    <link
+      href="/static/images/favicon.png"
+      href="{{ url_for('static', filename='/images/favicon.png') }}"
+      rel="icon"
+    />
+  </head>
+
+  <body>
+    <noscript>
+      <div id="javascriptDisabled" class="center">
+        <h2>Javascript not Enabled!</h2>
+        <h2>&#x2639;</h2>
+      </div>
+    </noscript>
+
+    <header id="topbar">
+      <div id="topbarContents">
+        <div id="headerTitleContainer">
+          <h1>my crappy blog</h1>
+        </div>
+
+        <div id="topbarLinks">
+          <a href="/"
+            ><div class="topbarLinkContainer"></div>
+            Home</a
+          >
+
+          <a
+            ><div class="topbarLinkContainer"></div>
+            Dashboard</a
+          >
+
+          <a id="accountButton">
+            <div class="topbarLinkContainer"></div>
+            Account
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div id="confirmationWindowFinalContainer">
+      <div id="confirmationWindowContainer">
+        <div id="confirmationWindow">
+          <h1>User Confirmation</h1>
+          <p>Are you sure you want to discard this post?</p>
+          <div class="bottomAlignedDiv center">
+            <a
+              class="closeButtonMultiple"
+              id="yesConfirmation"
+              onclick=""
+              onmouseenter="glowElement(this, true)"
+              onmouseleave="glowElement(this, false)"
+              >Yes</a
+            >
+            <a
+              class="closeButtonMultiple"
+              id="noConfirmation"
+              onclick=""
+              onmouseenter="glowElement(this, true)"
+              onmouseleave="glowElement(this, false)"
+              >No</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="accountDeletionTab" class="center">
+      <form method="POST" onsubmit="return false" id="accountDeletionForm">
+        <a>X</a>
+        <img
+          src="/static/images/loading.png"
+          src="{{ url_for('static', filename='/images/loading.png') }}"
+          class="loadingImageGlobal center"
+          alt="loading..."
+        />
+        <table id="deletionTab">
+          <thead>
+            <th><label for="pwd">Password:&nbsp;</label></th>
+            <td>
+              <input
+                id="pwd"
+                type="password"
+                name="password"
+                autocomplete="on"
+                minlength="4"
+                required
+              />
+            </td>
+          </thead>
+          <tbody>
+            <th><label for="retype_pwd">Retype Password:&nbsp;</label></th>
+            <td>
+              <!-- Make minlength bigger in other projects, 6 min -->
+              <input
+                id="retype_pwd"
+                type="password"
+                name="retype_password"
+                autocomplete="on"
+                minlength="4"
+                required
+              />
+            </td>
+          </tbody>
+          <tbody class="forEmail">
+            <th><label for="email">Email:&nbsp;</label></th>
+            <td>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                autocomplete="on"
+                minlength="7"
+                required
+              />
+            </td>
+          </tbody>
+          <tbody class="submitBody">
+            <th></th>
+            <td>
+              <input type="submit" value="Delete Account" />
+            </td>
+          </tbody>
+          <tbody>
+            <td><p>An error has occured!</p></td>
+          </tbody>
+        </table>
+      </form>
+    </div>
+
+    <p id="loggedInLabel">
+      Logged in as: <span id="loggedInAccount">Username</span>
+    </p>
+
+    <div id="settings">
+      <nav id="settingsNavigation">
+        <!-- <a class="settingNavButton"
+          ><img src="/static/images/gear.png" align="left" />General</a
+        > -->
+        <a class="settingNavButton"
+          ><img src="/static/images/privacy.png" align="left" />Privacy</a
+        >
+        <a class="settingNavButton"
+          ><img src="/static/images/edit.png" align="left" />Your Posts</a
+        >
+        <a class="settingNavButton"
+          ><img src="/static/images/user.png" align="left" />Account</a
+        >
+      </nav>
+
+      <div id="settingsMain">
+        <section id="settings_general" class="settingsSection">
+          <img src="/static/images/gear.png" align="left" />
+          <h3>General</h3>
+          <div class="settingContainer" id="us-unique_shares">
+            <h4>Show Unique Shares Only</h4>
+            <a class="settingSlider">
+              <div class="settingSliderBackground">
+                <div class="settingSliderButton"></div>
+              </div>
+            </a>
+            <p>
+              Anytime you share a post it will count towards the share count of
+              said post, this setting will only show the count of shares on a
+              post per account instead of the total count.
+            </p>
+          </div>
+        </section>
+
+        <section id="settings_privacy" class="settingsSection">
+          <img src="/static/images/privacy.png" align="left" />
+          <h3>Privacy</h3>
+          <div class="settingContainer">
+            <h4>Blocked Users</h4>
+            <p>No one to show here!</p>
+
+            <div class="flexrow" id="blockedPersonsContainer">
+              <!-- <div class="blockedPerson">
+                <h5>blocked person 1</h5>
+                <p>Blocked on <span>2024-06-09</span></p>
+                <div>
+                  <div>
+                    <h6>Notes</h6>
+                    <p>On post: <span>I HATE css</span></p>
+                  </div>
+                </div>
+                <a class="buttonClass">Unblock</a>
+              </div>
+
+              <div class="blockedPerson">
+                <h5>blocked person 1</h5>
+                <p>Blocked on <span>2024-06-09</span></p>
+                <div>
+                  <div>
+                    <h6>Notes</h6>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Reiciendis ipsa maxime perspiciatis. Necessitatibus
+                      aliquam molestias, officia illo.
+                    </p>
+                  </div>
+                </div>
+                <a class="buttonClass">Unblock</a>
+              </div> -->
+            </div>
+          </div>
+        </section>
+
+        <section id="settings_yourposts" class="settingsSection">
+          <img src="/static/images/edit.png" align="left" />
+          <h3>Your Posts</h3>
+          <div class="settingContainer">
+            <h4>Your Published Posts</h4>
+            <p>Nothing to show here!</p>
+
+            <!-- <div class="flexrow" id="createdPostsContainer">
+              <div class="createdPost">
+                <h5>Development Post</h5>
+                <p>Created on <span>2024-06-09</span></p>
+                <div class="createdPostInteractions">
+                  <span>94 Likes</span>
+                  <span>&nbsp; &#x2022; &nbsp;</span>
+                  <span>8 Shares (74 Unique)</span>
+                </div>
+
+                <div class="createdPostButtons">
+                  <a class="buttonClass">Open</a>
+                  <a class="buttonClass">Delete</a>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </section>
+
+        <section id="settings_account" class="settingsSection">
+          <img src="/static/images/user.png" align="left" />
+          <h3>Account</h3>
+          <div class="settingContainer">
+            <h4>Credentials</h4>
+
+            <div id="credentialsTable">
+              <p>Username: <span>development_account2</span></p>
+              <p>Display Name: <span>dev</span></p>
+              <p>Email: <span>example@provider.com</span></p>
+            </div>
+          </div>
+
+          <div class="settingContainer">
+            <h4>Change Display Name</h4>
+            <a class="settingSlider">
+              <a class="buttonClass">Change</a>
+            </a>
+          </div>
+
+          <div class="settingContainer">
+            <h4>Change Email</h4>
+            <a class="settingSlider">
+              <a class="buttonClass">Change</a>
+            </a>
+          </div>
+
+          <div class="settingContainer">
+            <h4>Delete Account</h4>
+            <a class="settingSlider">
+              <a class="buttonClass" id="deleteAccountButton"
+                >Start Deletion Process</a
+              >
+            </a>
+            <p>
+              This will delete all your posts and render your account
+              unrecoverable.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="notificationsDiv"></div>
+  </body>
+</html>

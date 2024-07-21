@@ -1,0 +1,350 @@
+#loggedInLabel {
+  margin-top: 5rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 125%;
+}
+
+#loggedInAccount {
+  color: rgb(63, 209, 119);
+  font-weight: normal;
+}
+
+#settings {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem;
+}
+
+#settingsNavigation {
+  background-color: rgba(42, 77, 53, 0.75);
+  height: fit-content;
+  width: fit-content;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin: 0 1rem;
+}
+
+.settingNavButton {
+  background-color: rgba(31, 68, 37, 0.75);
+  padding: 1rem 2rem;
+  margin: 0.15rem 0rem;
+  width: 12rem;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.settingNavButton:hover {
+  background-color: rgb(44, 141, 74);
+}
+
+.settingNavButton > img {
+  width: 1.5rem;
+  height: auto;
+}
+
+#settingsMain {
+  background-color: rgba(42, 77, 53, 0.75);
+  width: 80vw;
+  padding: 2rem;
+  margin: 0 4rem;
+}
+
+#settingsMain > section > h3 {
+  text-align: left;
+  background-color: rgba(42, 77, 53, 0.75);
+  padding: 0.25rem;
+  margin: 0 0 1.25rem 0;
+}
+
+.settingsSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.settingsSection > img {
+  width: 1.25rem;
+  height: auto;
+  margin: 0.3rem;
+}
+
+#settings_general {
+  display: none;
+}
+
+#settings_privacy {
+  display: block;
+}
+
+#settings_yourposts {
+  display: none;
+}
+
+#settings_account {
+  display: none;
+}
+
+p:has(+ #blockedPersonsContainer) {
+  display: none;
+}
+
+p:has(+ #createdPostsContainer) {
+  display: none;
+}
+
+.settingContainer {
+  margin: 1rem;
+  padding: 1rem;
+  border: 0.65px solid rgba(42, 77, 53, 1);
+}
+
+.settingContainer > h4 {
+  margin-bottom: 0.5rem;
+}
+
+.settingContainer > p {
+  margin: 0.5rem;
+}
+
+.settingSlider {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* 
+Green: rgba(48, 136, 76, 0.75) margin-left: 1.5rem;
+Red: rgba(136, 48, 48, 0.75) margin-left: 0rem;
+*/
+.settingSliderBackground {
+  background-color: rgba(48, 136, 76, 0.75);
+  width: 3rem;
+  height: 1.5rem;
+  border-radius: 16px;
+  transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.settingSliderButton {
+  background-color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 100%;
+  margin-left: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.blockedPerson {
+  border: 0.65px solid rgb(19, 73, 40);
+  width: 15vw;
+  padding: 1rem;
+  text-align: center;
+  margin: 0.5rem 0.5rem;
+}
+
+.blockedPerson > p > span {
+  color: rgb(44, 141, 74);
+}
+
+.blockedPerson > div {
+  height: 15vh;
+}
+
+.blockedPerson > div > div {
+  border: 0.65px solid rgba(42, 77, 53, 1);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  height: fit-content;
+}
+
+.blockedPerson > div > p {
+  font-size: 85%;
+  font-style: italic;
+  margin-top: 0.65rem;
+}
+
+.blockedPerson > div p > span {
+  font-style: italic;
+}
+
+.blockedPerson > a {
+}
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 1rem;
+}
+
+.buttonClass {
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  border-radius: 6px;
+  display: inline-block;
+  background-color: rgba(42, 77, 53, 1);
+  padding: 0.5rem;
+}
+
+.buttonClass:hover {
+  background-color: rgb(44, 141, 74);
+}
+
+.createdPost {
+  border: 0.65px solid rgba(42, 77, 53, 1);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.createdPost > h5 {
+  font-size: large;
+}
+
+.createdPostButtons {
+  margin: 1rem 0;
+}
+
+.createdPost > p > span {
+  color: rgb(44, 141, 74);
+}
+
+.createdPostInteractions > span {
+  color: rgba(125, 125, 125, 1);
+  font-size: 90%;
+}
+
+#credentialsTable {
+  background-color: rgba(42, 77, 53, 1);
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+#credentialsTable > * {
+  background-color: rgba(31, 65, 42, 0.75);
+  width: 25rem;
+  margin: 0.25rem 0.25rem;
+  padding: 0.25rem;
+}
+
+#credentialsTable > * > * {
+  color: rgb(46, 139, 76);
+}
+
+#credentialsTable a {
+  margin-left: 14.5rem;
+  color: teal;
+  cursor: pointer;
+}
+
+#accountDeletionTab {
+  visibility: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#accountDeletionForm {
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#accountDeletionTab .forEmail {
+  position: absolute;
+  padding-left: 77px;
+  opacity: 1;
+  top: 45%;
+
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#accountDeletionTab #createAccount {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#accountDeletionTab #createAccount a {
+  font-style: italic;
+  transition: all 0.25s cubic-bezier(0.165, 0.85, 0.45, 1);
+  cursor: pointer;
+}
+
+#accountDeletionTab #createAccount a:hover {
+  color: rgb(55, 141, 71);
+}
+
+#accountButton:hover {
+  background-color: var(--accountButtonHoverBG) !important;
+}
+
+#accountDeletionForm > a {
+  color: rgb(200, 200, 200);
+  position: absolute;
+  z-index: 3;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+#deletionTab {
+  padding: 2rem 4rem;
+
+  /* height: 250px; */
+  height: 0px;
+
+  background-color: rgba(74, 90, 79, 1);
+
+  border-radius: 12px;
+  z-index: 2;
+
+  filter: drop-shadow(2px 2px 3px black);
+  transition: all 0.25s var(--accountTabTransition);
+}
+
+#deletionTab * {
+  margin: 0.5rem 0.25rem;
+}
+
+#deletionTab input {
+  border-radius: 5px;
+  padding: 0px 4px;
+  filter: drop-shadow(0px 0px 2px black);
+}
+
+#deletionTab label {
+  color: rgb(92, 143, 113);
+  font-weight: bold;
+  filter: drop-shadow(0px 0px 2px rgb(0, 0, 0));
+}
+
+#deletionTab input[type="submit"] {
+  margin: 0 auto;
+  border-radius: 5px;
+  margin-top: 2.5rem;
+  padding: 0.35rem 0.25rem !important;
+  cursor: pointer;
+}
+
+.submitBody ~ tbody p {
+  text-shadow: 0px 0px 5px red;
+  background-color: rgba(74, 90, 79, 1);
+  border-radius: 12px;
+}

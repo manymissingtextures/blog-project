@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="us-EN">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+    <link
+      href="{{ url_for('static', filename='styles/styling.css') }}"
+      rel="stylesheet"
+    /> -->
+    <link href="/static/styles/styling.css" rel="stylesheet" />
+    <link href="/static/styles/errorstyling.css" rel="stylesheet" />
+
+    <script src="/static/error.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+
+    <title>My Crappy Blog</title>
+    <link
+      href="/static/images/favicon.png"
+      href="{{ url_for('static', filename='/images/favicon.png') }}"
+      rel="icon"
+    />
+  </head>
+
+  <body>
+    <header id="topbar">
+      <div id="topbarContents">
+        <div id="headerTitleContainer">
+          <h1>my broken blog</h1>
+        </div>
+      </div>
+    </header>
+
+    <div id="main">
+      <h2 id="subtitle">Something went wrong!</h2>
+      <h2>:(</h2>
+      <div id="detailsContainer">
+        <!-- <p id="code">Code: {{ code }}</p> -->
+        <p id="desc">{{ description }}</p>
+        <a href="/"><div id="returnbutton">Return Home</div></a>
+        <i>or stay and view something goofy</i>
+      </div>
+
+      <p>It's my first "big" project so this is fine right?</p>
+
+      <noscript>
+        <p style="margin-top: 5rem">
+          Javascript not enabled, no funny image or video allowed.
+        </p>
+      </noscript>
+    </div>
+  </body>
+</html>

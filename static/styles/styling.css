@@ -1,0 +1,836 @@
+:root {
+  /* Never used Vars in CSS before, putting them here just
+  to get used to creating them in root, usually would put
+  them where they'll only be used. */
+
+  --topbarH: 0.25rem;
+  --topbarV: 0.5rem;
+  --accountTabTransition: cubic-bezier(0.355, 1, 0.355, 1);
+  --accountButtonHoverBG: rgba(31, 68, 37, 0.75);
+  --scrollUpLineHeight: 0.65;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  /* Font Settings */
+  color: white;
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  background-color: rgb(77, 97, 84);
+  background-image: repeating-linear-gradient(
+    /* rgb(77, 97, 84),
+    rgb(87, 112, 96) 5%,
+    rgb(77, 97, 84) 10% */
+      rgb(60, 99, 75),
+    rgb(77, 97, 84) 25%,
+    rgb(60, 99, 75) 50%,
+    rgb(77, 97, 84) 75%,
+    rgb(60, 99, 75)
+  );
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+#javascriptDisabled {
+  padding-top: 12rem;
+  text-align: center;
+}
+
+#topbar {
+  background-color: rgb(38, 75, 52);
+
+  position: fixed;
+  top: 0;
+
+  width: 100%;
+
+  z-index: 100;
+
+  margin-bottom: 5rem;
+
+  max-height: 5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: var(--topbarV) var(--topbarH) var(--topbarV) var(--topbarH);
+}
+
+#headerTitleContainer {
+  width: fit-content;
+  text-align: left;
+  /* margin-right: 2vw; */
+}
+
+#headerTitleContainer > h1 {
+  color: rgb(55, 141, 71);
+  filter: drop-shadow(-1.5px -0.75px rgba(84, 179, 75, 0.3));
+  white-space: nowrap;
+  max-height: 1em;
+}
+
+#topbarContents {
+  display: flex;
+  justify-content: flex-end; /* Horizontal */
+  align-items: center; /* Vertical */
+}
+
+#topbarContents > * {
+  padding: 0rem 2rem 0rem 2rem;
+}
+
+#topbarLinks {
+  width: 35vw;
+
+  display: flex;
+  justify-content: center;
+}
+
+#topbarLinks > a {
+  display: inline-block;
+  overflow: hidden;
+  width: 10rem;
+  font-size: 100%;
+
+  margin: 0rem 0.15rem;
+  padding: 1rem 0.5rem;
+
+  font-weight: bold;
+
+  background-color: rgba(44, 83, 50, 0.5);
+  border-radius: 5px;
+
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+
+  transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#topbarLinks > a:hover {
+  background-color: rgba(31, 68, 37, 0.75);
+}
+
+#topbarLinks > a:active {
+  background-color: rgba(25, 60, 30, 0.75);
+}
+
+#accountTabContainer {
+  visibility: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#accountTabContainer .forEmail {
+  position: absolute;
+  padding-left: 27px;
+  opacity: 0;
+  top: 45%;
+
+  transition: all 0.6s var(--accountTabTransition);
+}
+
+.submitBody ~ tbody {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.submitBody ~ tbody p {
+  color: red;
+  padding: 1rem;
+  opacity: 0;
+  /* visibility: hidden; */
+  transition: all 0.25s cubic-bezier(0.165, 0.85, 0.45, 1);
+}
+
+#accountTabContainer #createAccount {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#accountTabContainer #createAccount a {
+  font-style: italic;
+  transition: all 0.25s cubic-bezier(0.165, 0.85, 0.45, 1);
+  cursor: pointer;
+}
+
+#accountTabContainer #createAccount a:hover {
+  color: rgb(55, 141, 71);
+}
+
+#accountButton:hover {
+  background-color: var(--accountButtonHoverBG) !important;
+}
+
+#accountTab {
+  visibility: hidden;
+  opacity: 0;
+
+  padding: 2rem 4rem;
+
+  /* height: 250px; */
+  height: 0px;
+
+  background-color: rgba(74, 90, 79, 1);
+
+  border-radius: 12px;
+  z-index: 2;
+
+  filter: drop-shadow(2px 2px 3px black);
+  transition: all 0.25s var(--accountTabTransition);
+}
+
+#accountTab * {
+  margin: 0.5rem 0.25rem;
+}
+
+#accountTab input {
+  border-radius: 5px;
+  padding: 0px 4px;
+  filter: drop-shadow(0px 0px 2px black);
+}
+
+#accountTab label {
+  color: rgb(92, 143, 113);
+  font-weight: bold;
+  filter: drop-shadow(0px 0px 2px rgb(0, 0, 0));
+}
+
+input,
+textarea {
+  background-color: rgb(64, 87, 72);
+  border-style: none;
+}
+
+#accountTab input[type="submit"] {
+  margin: 0 auto;
+  border-radius: 5px;
+  margin-top: 1.5rem;
+  padding: 0.35rem 1.5rem !important;
+  cursor: pointer;
+}
+
+.submitBody ~ tbody p {
+  text-shadow: 0px 0px 5px red;
+  background-color: rgba(74, 90, 79, 1);
+  border-radius: 12px;
+}
+
+#sortingContainer {
+  width: fit-content;
+  padding: 0.5rem;
+
+  border-radius: 8px;
+  border-color: rgb(64, 87, 72);
+  border-style: solid;
+
+  text-align: center;
+  font-weight: bold;
+}
+
+#postFeaturedSelection {
+  position: absolute;
+  visibility: hidden; /* Change for admins */
+  right: 0.75rem;
+  top: 4rem;
+  background-color: rgb(64, 87, 72);
+}
+
+.dropdownInput {
+  background-color: inherit;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+
+  padding: 2px;
+}
+
+.dropdownInput * {
+  background-color: rgba(93, 105, 97, 1);
+  font-style: italic;
+}
+
+#createPostContainer {
+  text-align: center;
+}
+
+#createPostButton {
+  background-color: rgba(93, 105, 97, 0.5);
+  padding: 0.75rem;
+  margin-left: 1rem;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+#abovePostsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20vw;
+  margin-top: 5rem;
+}
+
+#blogMain {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.blogElementContainer {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.blogElement {
+  position: relative;
+  background-color: rgba(93, 105, 97, 0.5);
+  min-height: 20vh;
+  max-width: 80vmin;
+  border-radius: 6px;
+
+  padding: 1rem;
+
+  filter: drop-shadow(3px 3px 0px rgb(0, 0, 0));
+}
+
+.blogElementHeading {
+  /* background-color: rgb(88, 107, 96); */
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: left;
+  align-items: center;
+}
+
+.blogElementHeadingSubtitle {
+  justify-self: baseline;
+  align-self: baseline;
+}
+
+.PostDATE {
+  text-align: right;
+}
+
+.PostEDIT {
+  font-size: 85%;
+}
+
+.blogElementTitle {
+  font-weight: bold;
+  font-size: 175%;
+
+  margin-right: auto;
+  width: 100%;
+}
+
+.blogElementSubtitle {
+  opacity: 50%;
+  font-size: 125%;
+  white-space: nowrap;
+}
+
+.blogElementImportance {
+  font-size: 175%;
+}
+
+.blogElementBody,
+.blogElementBody textarea {
+  text-align: left;
+  padding-top: 1.5rem;
+
+  font-size: larger;
+
+  min-height: 5vh;
+
+  line-height: 2rem;
+}
+
+.blogMainReactions {
+  display: flex;
+  justify-content: center;
+
+  width: fit-content;
+  padding: 0rem 1rem;
+  margin: auto;
+  margin-top: 2rem;
+  text-align: center;
+
+  background-color: rgba(74, 90, 79, 0.4);
+  border-radius: 5px;
+}
+
+a.blogReactionButton {
+  font-size: 150%;
+  cursor: pointer;
+}
+
+a.blogReactionButton > img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+span.blogReactionButton {
+  cursor: default;
+}
+
+.blogElementHeadingSubtitle img {
+  width: 1rem;
+  height: 1rem;
+  filter: grayscale(0.5);
+}
+
+.blogReactionButton {
+  font-size: 150%;
+}
+
+.blogElementSeparator {
+  background-color: rgba(38, 75, 52, 0.35);
+
+  width: 0.15rem;
+  height: 5rem;
+}
+
+.blogElementHeading input {
+  padding: 0.25rem 0.5rem;
+}
+
+#blogCreationContainer {
+  display: none;
+  filter: drop-shadow(0px 0px 12px rgb(71, 196, 81));
+}
+
+#createblogElementForm .blogElementBody {
+  width: 100%;
+}
+
+#createblogElementForm textarea {
+  padding-left: 1rem;
+  resize: vertical;
+  width: inherit;
+}
+
+#blogpostSubmit {
+  text-align: center;
+}
+
+#blogpostSubmit > * {
+  padding: 0.45rem 1rem;
+  margin: 0.5rem 1rem;
+
+  border-radius: 4px;
+}
+
+.center {
+  margin: auto;
+}
+
+.alignedText {
+  text-align: center;
+}
+
+.profilePicture {
+  width: 2rem;
+  height: 2rem;
+
+  border-style: solid;
+  border-radius: 5px;
+  border-color: rgb(107, 136, 117, 0.7);
+
+  background-color: rgb(107, 136, 117, 0.7);
+}
+
+#postOptionsContainer {
+  position: absolute;
+  visibility: hidden;
+  opacity: 1;
+
+  background-color: rgba(93, 105, 97, 0.5);
+  height: fit-content;
+  width: fit-content;
+  border-radius: 6px;
+
+  padding: 0.25rem;
+
+  filter: drop-shadow(3px 3px 0px rgb(0, 0, 0));
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  z-index: 5;
+}
+
+.postOptionLink {
+  border-radius: 5px;
+  margin: 0.25rem;
+  padding: 0.25rem 0rem;
+  background-color: rgba(93, 105, 97, 0.5);
+  width: 7vw;
+  text-align: center;
+  cursor: pointer;
+}
+
+.postOptionLink:hover {
+  background-color: rgba(93, 105, 97, 0.25);
+}
+
+.postOptions {
+  font-size: 125%;
+  margin-left: 1rem;
+  opacity: 50%;
+  cursor: pointer;
+}
+
+#option_deletePost {
+  color: rgb(255, 100, 100);
+  display: none;
+}
+
+#option_editPost {
+  display: none;
+}
+
+#option_blockUser {
+  display: inline;
+}
+
+#motdFinalContainer {
+  display: none;
+}
+
+#motdContainer {
+  position: fixed;
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  z-index: 50;
+}
+
+#motd {
+  opacity: 0.9;
+  background-color: rgb(74, 100, 67);
+  padding: 2rem;
+  width: 30vw;
+  height: fit-content;
+
+  margin: auto;
+  text-align: center;
+
+  border-radius: 15px;
+  border: 3px solid rgba(53, 83, 45, 0.25);
+
+  filter: drop-shadow(0px 0px 24px rgba(0, 0, 0, 0.5));
+}
+
+#motd > p,
+#motd > h1 {
+  padding: 1rem;
+  line-height: 1.5;
+  filter: drop-shadow(2px 2px 6px rgba(255, 255, 255, 0.75));
+}
+
+.bottomAlignedDiv {
+  width: 100%;
+}
+
+.closeButton {
+  position: absolute;
+  bottom: 0%;
+
+  text-align: center;
+  background-color: rgba(25, 60, 30, 0.5);
+  padding: 0.25rem;
+  border-radius: 8px;
+
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+
+  width: 20%;
+  margin: auto;
+  margin-bottom: 0.5rem;
+
+  cursor: pointer;
+
+  filter: drop-shadow(0px 2px 6px rgb(0, 0, 0));
+}
+
+#confirmationWindowFinalContainer {
+  display: none;
+}
+
+#confirmationWindowContainer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 125;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+#confirmationWindow {
+  opacity: 0.9;
+  background-color: rgb(74, 100, 67);
+  padding: 2rem;
+  width: 30vw;
+  height: fit-content;
+
+  margin: auto;
+  text-align: center;
+
+  border-radius: 15px;
+  border: 3px solid rgba(53, 83, 45, 0.25);
+
+  filter: drop-shadow(0px 0px 24px rgba(0, 0, 0, 0.5));
+}
+
+#confirmationWindow > p,
+#confirmationWindow > h1 {
+  padding: 0.45rem;
+  filter: drop-shadow(2px 2px 6px rgba(255, 255, 255, 0.75));
+}
+
+#confirmationWindow > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-top: 2rem;
+}
+
+.closeButtonMultiple {
+  text-align: center;
+  background-color: rgba(25, 60, 30, 0.5);
+  padding: 0.25rem;
+  border-radius: 8px;
+
+  width: 20%;
+  margin-bottom: 0.5rem;
+
+  cursor: pointer;
+
+  transition: filter 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+#loadingImageContainer {
+  width: 5rem;
+}
+
+#loadingImage {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  filter: drop-shadow(0px 0px 12px rgb(144, 226, 107));
+
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-name: loading;
+}
+
+.loadingImageGlobal {
+  z-index: 5;
+  visibility: hidden;
+  position: absolute;
+  margin-top: 3rem;
+  display: block;
+  width: 7rem;
+  height: 7rem;
+  right: 0;
+  left: 0;
+
+  filter: drop-shadow(0px 0px 12px rgb(144, 226, 107));
+
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-name: loading;
+}
+
+#scrollUpContainer {
+  position: fixed;
+  bottom: 2rem;
+  right: 3rem;
+
+  width: 2rem;
+  text-align: center;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+#scrollUpContainer > a {
+  cursor: pointer;
+}
+
+#scrollUpContainer > a > span {
+  color: rgba(86, 179, 101, 0.5);
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: var(--scrollUpLineHeight);
+  transition: line-height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#notificationsDiv {
+  position: fixed;
+  left: 0%;
+  right: 0%;
+  bottom: 5%;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.notificationBottom {
+  opacity: 0;
+
+  background-color: rgba(25, 60, 30, 0.95);
+  padding: 0.5rem;
+  margin-top: 0.75rem;
+
+  width: fit-content;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.notificationBottom > h4 {
+  font-weight: normal;
+  text-shadow: 1px 1px 2px rgb(0, 255, 64);
+}
+
+#footer {
+  margin-top: 3rem;
+  background-color: rgba(86, 179, 101, 0.5);
+  position: relative;
+  bottom: 0;
+}
+
+.reaction {
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@media (max-width: 1000px) {
+  #headerTitleContainer {
+    display: none;
+  }
+
+  #topbarContents {
+    margin: 0px;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+  }
+
+  #topbarLinks {
+    width: fit-content;
+    justify-content: center;
+  }
+
+  #topbarLinks > a {
+    width: 30vmin;
+  }
+}
+
+@keyframes blurOff {
+  0% {
+    filter: blur(5px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+
+@keyframes invisible {
+  0% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  12.5% {
+    transform: rotate(45deg);
+  }
+
+  25% {
+    transform: rotate(90deg);
+  }
+
+  37.5% {
+    transform: rotate(135deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  62.5% {
+    transform: rotate(225deg);
+  }
+
+  75% {
+    transform: rotate(270deg);
+  }
+
+  87.5% {
+    transform: rotate(315deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
